@@ -19,6 +19,14 @@ dependencies:
 
 ```crystal
 require "collider"
+
+...
+
+# check rectangles collisions
+::Collider.separating_axis_theorem_for_rectangles 0.to_rad, (360 - oangle).to_rad,
+  ::Collider.rectangle_points(fx, fy, fw) +
+  ::Collider.rectangle_points_rotate(oangle.to_rad, ::Collider.rectangle_points(ox, oy, ow))
+
 ```
 
 
