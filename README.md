@@ -1,5 +1,9 @@
 # Collider
 
+# Code status
+
+[![Build Status](https://travis-ci.org/forsaken1/collider.cr.svg?branch=master)](https://github.com/forsaken1/collider.cr)
+
 ## Installation
 
 Add this to your application's `shard.yml`:
