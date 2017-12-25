@@ -99,4 +99,14 @@ describe Collider do
       Collider.rectangle_points(1, 1, 1).should eq [2, 2, 0, 2, 2, 0, 0, 0]
     end
   end
+
+  describe "#distance" do
+    it "return distance between two points (0, 0) and (0, 1)" do
+      Collider.distance(0, 0, 0, 1).should eq(1.0)
+    end
+
+    it "return distance between two points (1, 1) and (2, 2)" do
+      Collider.distance(1, 1, 2, 2).should be_close(1.41, 0.01)
+    end
+  end
 end

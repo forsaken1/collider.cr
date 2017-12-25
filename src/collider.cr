@@ -3,7 +3,7 @@ require "./collider/*"
 module Collider
   def self.separating_axis_theorem_for_rectangles(angle1, angle2, rectangles_points)
     rectangles_with_angle_colliding?(angle1, rectangles_points) &&
-    rectangles_with_angle_colliding?(angle2, rectangles_points)
+      rectangles_with_angle_colliding?(angle2, rectangles_points)
   end
 
   # enter:  center point coords and half width and half height of rectangle
@@ -33,7 +33,7 @@ module Collider
 
   def self.rectangles_colliding?(points)
     segments_colliding?(*min_max(rectangle_only_x(points))) &&
-    segments_colliding?(*min_max(rectangle_only_y(points)))
+      segments_colliding?(*min_max(rectangle_only_y(points)))
   end
 
   def self.rectangle_only_x(points)
@@ -48,10 +48,12 @@ module Collider
     args[0..3].minmax + args[4..7].minmax
   end
 
+  # Check segments colliding
   def self.segments_colliding?(min1, max1, min2, max2)
     min1 <= min2 && min2 <= max1 || min2 <= min1 && min1 <= max2
   end
 
+  # Rotate point (x, y) around point (x0, y0)
   def self.rotate_point(x, y, angle, x0 = 0.0, y0 = 0.0)
     [
       rotate_x(x, y, angle, x0, y0),
@@ -59,11 +61,18 @@ module Collider
     ]
   end
 
+  # Rotate x coordinate around point (x0, y0)
   def self.rotate_x(x, y, angle, x0 = 0.0, y0 = 0.0)
-    ( x0 + (x - x0) * Math.cos(angle) - (y - y0) * Math.sin(angle) ).round(5)
+    (x0 + (x - x0) * Math.cos(angle) - (y - y0) * Math.sin(angle)).round(5)
   end
 
+  # Rotate y coordinate around point (x0, y0)
   def self.rotate_y(x, y, angle, x0 = 0.0, y0 = 0.0)
-    ( y0 + (x - x0) * Math.sin(angle) + (y - y0) * Math.cos(angle) ).round(5)
+    (y0 + (x - x0) * Math.sin(angle) + (y - y0) * Math.cos(angle)).round(5)
+  end
+
+  # Get distance between (x1, y1) and (x2, y2)
+  def self.distance(x1, y1, x2, y2)
+    Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
   end
 end
